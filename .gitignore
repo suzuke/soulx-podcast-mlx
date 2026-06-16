@@ -1,0 +1,22 @@
+# converted/downloaded weights (regenerate via convert_weights.py / HF download)
+weights/
+pretrained_models/
+*.safetensors
+
+# vendored dependency (clone separately, see README)
+mlx-audio/
+
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# audio / data artifacts
+*.wav
+*.npz
+*.flac
+!soulx_mlx/assets/*.npz   # keep the bundled mel-filter asset
+
+.DS_Store

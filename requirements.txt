@@ -1,0 +1,10 @@
+# runtime deps (Apple Silicon / MLX). NOTE: also clone Blaizzy/mlx-audio (see README).
+mlx
+mlx-lm
+numpy
+scipy
+soundfile
+librosa
+einops
+onnxruntime
+huggingface-hub

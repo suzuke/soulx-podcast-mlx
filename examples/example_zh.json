@@ -1,0 +1,18 @@
+{
+  "speakers": {
+    "S1": {
+      "prompt_audio": "examples/ref/female.wav",
+      "prompt_text": "這裡放 female.wav 這段參考音檔的逐字稿。"
+    },
+    "S2": {
+      "prompt_audio": "examples/ref/male.wav",
+      "prompt_text": "這裡放 male.wav 這段參考音檔的逐字稿。"
+    }
+  },
+  "text": [
+    ["S1", "哈喽大家好,欢迎收听本期节目。<|laughter|>"],
+    ["S2", "对呀,今天我们来聊聊在 Mac 上跑 AI 这件事。"],
+    ["S1", "这个话题我太有感触了,前两天刚折腾完。"],
+    ["S2", "那快跟大家分享一下吧!"]
+  ]
+}
