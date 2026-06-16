@@ -1,3 +1,0 @@
-# extra deps for the one-time weight conversion (convert_weights.py), which reads PyTorch .pt files
-torch==2.7.1
-safetensors

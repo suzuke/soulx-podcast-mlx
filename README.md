@@ -44,26 +44,27 @@ git clone https://github.com/Blaizzy/mlx-audio.git        # → ./mlx-audio
 #   (pin to the tested commit for reproducibility:)
 #   (cd mlx-audio && git checkout 4ee9539)
 
-# 2. runtime deps
-python3.11 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+# 2. runtime deps (managed by uv — creates .venv automatically)
+uv sync
 
 # 3. download SoulX-Podcast-1.7B weights
-huggingface-cli download Soul-AILab/SoulX-Podcast-1.7B \
+uv run huggingface-cli download Soul-AILab/SoulX-Podcast-1.7B \
     --local-dir pretrained_models/SoulX-Podcast-1.7B
 
-# 4. one-time weight conversion (PyTorch → MLX). needs torch too:
-pip install -r requirements-convert.txt
-python convert_weights.py pretrained_models/SoulX-Podcast-1.7B weights
+# 4. one-time weight conversion (PyTorch → MLX). pulls torch via the `convert` extra:
+uv sync --extra convert
+uv run python convert_weights.py pretrained_models/SoulX-Podcast-1.7B weights
 #   → produces weights/hift_mlx.safetensors + weights/flow_mlx.safetensors
 ```
+
+> Dependencies are managed with [uv](https://docs.astral.sh/uv/): `uv sync` creates `.venv` from `pyproject.toml`; `uv run` executes inside it (no global Python pollution).
 
 `mlx-audio` is found via `MLX_AUDIO_PATH` (defaults to `./mlx-audio`); converted weights via `SOULX_MLX_WEIGHTS` (defaults to `./weights`).
 
 ## Usage
 
 ```bash
-python soulx_mlx/pipeline.py <script.json> pretrained_models/SoulX-Podcast-1.7B out.wav
+uv run python soulx_mlx/pipeline.py <script.json> pretrained_models/SoulX-Podcast-1.7B out.wav
 ```
 
 Script format (multi-speaker, multi-turn; paralinguistic tags supported):

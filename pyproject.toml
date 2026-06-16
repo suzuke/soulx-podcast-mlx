@@ -1,0 +1,32 @@
+[project]
+name = "soulx-podcast-mlx"
+version = "0.1.0"
+description = "Apple Silicon (MLX) native port of SoulX-Podcast — faster-than-real-time multi-speaker podcast TTS on Mac"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+
+# runtime deps. NOTE: also clone Blaizzy/mlx-audio separately (see README) — it is
+# vendored via MLX_AUDIO_PATH, not a PyPI dependency.
+dependencies = [
+    "mlx",
+    "mlx-lm",
+    "numpy",
+    "scipy",
+    "soundfile",
+    "librosa",
+    "einops",
+    "onnxruntime",
+    "huggingface-hub",
+]
+
+[project.optional-dependencies]
+# only needed for the one-time PyTorch->MLX weight conversion (convert_weights.py)
+convert = [
+    "torch==2.7.1",
+    "safetensors",
+]
+
+[tool.uv]
+# this is an application (scripts), not an installable library — manage deps only
+package = false
